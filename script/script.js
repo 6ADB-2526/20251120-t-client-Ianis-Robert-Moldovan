@@ -1,4 +1,3 @@
-
 // selecteren van alle html elementen
 const divSelectKind = document.querySelector("#selKind")
 const selectKinderen = document.querySelector("#kinderen")
@@ -9,17 +8,14 @@ const formAddKind = document.querySelector("#addKind")
 const selectGeschenken = document.querySelector("#geschenken")
 const geschenkenVerwijderen = document.querySelector("#geschenkenVerwijderen")
 const geschenkenlijst = document.querySelector("#geschenkenlijst")
-
 // selecteren van submits uit html
 const btnToevoegenGeschenk = document.querySelector("#btnToevoegenGeschenk")
 const btnWisGeschenk = document.querySelector("#btnWisGeschenk")
 const btnVoegKind = document.querySelector("#btnVoegKind")
 
-let selecteID = 0
-
 // ophalen van externe informatie
 fetch("https://o-apiandclient-render.onrender.com/kinderen")
-    .then((info) => info.json())
+    .then((data) => data.json())
     .then((kinderen) => {
         kinderen.forEach(kind => {
             const newOption = document.createElement("option")
@@ -29,13 +25,12 @@ fetch("https://o-apiandclient-render.onrender.com/kinderen")
         });
     })
 
-
 // geschenk van het selecteerde kindje
 selectKinderen.addEventListener("change", (e) => {
     selecteID = e.target.value
 
     fetch("https://o-apiandclient-render.onrender.com/geschenken" + e.target.value)
-        .then((info) => info.json())
+        .then((data) => data.json())
         .then((cadeau) => {
             geschenkenlijst.innerHTML = ""
             const newP = document.createElement("P")
@@ -44,10 +39,9 @@ selectKinderen.addEventListener("change", (e) => {
         })
 })
 
-
 // select geschenk toevoegen
 fetch("https://o-apiandclient-render.onrender.com/geschenken")
-    .then((info) => info.json())
+    .then((data) => data.json())
     .then((cadeautjes) => {
         cadeautjes.forEach(cadeau => {
             const newOption = document.createElement("option")
@@ -58,7 +52,7 @@ fetch("https://o-apiandclient-render.onrender.com/geschenken")
     })
 
 fetch("https://o-apiandclient-render.onrender.com/geschenken")
-    .then((info) => info.json())
+    .then((data) => data.json())
     .then((cadeautjes) => {
         cadeautjes.forEach(cadeau => {
             const newOption = document.createElement("option")
