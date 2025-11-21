@@ -1,3 +1,5 @@
+<!-- @format -->
+
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -23,7 +25,7 @@
           <select name="geschenken" id="geschenken">
             <option value="0">Kies het toe te geschenk</option>
           </select>
-          <input type="submit" value="geschenk toevoegen" />
+          <input type="submit" id="btnToevoegenGeschenk" value="geschenk toevoegen" />
         </form>
       </div>
       <div id="verwijderGeschenk">
@@ -31,19 +33,21 @@
           <select name="geschenken" id="geschenken">
             <option value="0">Kies het te verwijderen geschenk</option>
           </select>
-          <input type="submit" value="wis geschenk" />
+          <input type="submit" id="btnWisGeschenk" value="wis geschenk" />
         </form>
       </div>
     </div>
     <h2>voeg een kind toe aan de lijst</h2>
     <form id="addKind">
       <p>
-        <label for="naam">naam:</label> <input type="text" name="voornaam" />
+        <label for="naam">naam:</label>
+        <input type="text" name="voornaam" />
       </p>
       <p>
-        <label for="achternaam">naam:</label>
+        <label for="achternaam">achternaam:</label>
         <input type="text" name="achternaam" />
       </p>
+      <input type="submit" id="btnVoegKind" value="voeg kind" />
     </form>
     <script src="./script/script.js"></script>
   </body>
