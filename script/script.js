@@ -29,7 +29,12 @@ fetch("https://o-apiandclient-render.onrender.com/kinderen")
 fetch("https://o-apiandclient-render.onrender.com/kinderen")
     .then((data) => data.json())
     .then((cadeaus) => {
-        
+        cadeaus.forEach(cadeau => {
+          const newLI = document.createElement("li")
+          newLI.value = cadeau.id
+          newLI.innerHTML = newOption.fullGeschenk.naam
+          geschenkenlijst.appendChild(newLI)
+        })
     })
 
 
