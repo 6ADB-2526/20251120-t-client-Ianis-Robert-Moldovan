@@ -13,7 +13,7 @@ const btnToevoegenGeschenk = document.querySelector("#btnToevoegenGeschenk")
 const btnWisGeschenk = document.querySelector("#btnWisGeschenk")
 const btnVoegKind = document.querySelector("#btnVoegKind")
 
-// ophalen van externe informatie
+// ophalen van kinderen 
 fetch("https://o-apiandclient-render.onrender.com/kinderen")
     .then((data) => data.json())
     .then((kinderen) => {
@@ -26,18 +26,12 @@ fetch("https://o-apiandclient-render.onrender.com/kinderen")
     })
 
 // geschenk van het selecteerde kindje
-selectKinderen.addEventListener("change", (e) => {
-    selecteID = e.target.value
+fetch("https://o-apiandclient-render.onrender.com/kinderen")
+    .then((data) => data.json())
+    .then((cadeaus) => {
+        
+    })
 
-    fetch("https://o-apiandclient-render.onrender.com/geschenken" + e.target.value)
-        .then((data) => data.json())
-        .then((cadeau) => {
-            geschenkenlijst.innerHTML = ""
-            const newP = document.createElement("P")
-            newP.innerHTML = cadeau.naam
-            geschenkenlijst.appendChild(newP)
-        })
-})
 
 // select geschenk toevoegen
 fetch("https://o-apiandclient-render.onrender.com/geschenken")
@@ -51,14 +45,41 @@ fetch("https://o-apiandclient-render.onrender.com/geschenken")
         });
     })
 
-fetch("https://o-apiandclient-render.onrender.com/geschenken")
-    .then((data) => data.json())
-    .then((cadeautjes) => {
-        cadeautjes.forEach(cadeau => {
-            const newOption = document.createElement("option")
-            newOption.value = cadeau.id
-            newOption.innerHTML = cadeau.naam
-            geschenkenVerwijderen.appendChild(newOption)
-        });
-    })
+// geschenk toevoegen knop
+btnToevoegenGeschenk.addEventListener("click", () => {
 
+})
+
+// geschenk verwijderen knop
+btnWisGeschenk.addEventListener("click", () => {
+  const id = selectGeschenken.value;
+  const options = {
+    method: "DELETE",
+    headers: { "Content-type": "application/json" }
+  };
+
+  fetch("https://o-apiandclient-render.onrender.com/geschenken" + id, options)
+    .then((info) => info.json())
+    .then((geschenk) => {
+      console.log("Verwijderd:", geschenk);
+    });
+});
+
+// kind toevoegen knop
+btnVoegKind.addEventListener("click", () => {
+  const options = {
+    method: "POST",
+    headers: { "Content-type": "application/json" },
+    body: JSON.stringify({
+      id: 0,
+      voornaam: "string",
+      achternaam: "string"
+    }),
+  };
+
+  fetch("https://o-apiandclient-render.onrender.com/kinderen", options)
+    .then((data) => data.json())
+    .then((kind) => {
+      console.log(kind);
+    });
+});
